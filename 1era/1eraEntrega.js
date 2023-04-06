@@ -5,16 +5,25 @@ class ProductManager {
     }
 
     addProduct(title, description, price, thumbnail, code, stock) {
-        const product ={
-            id: this.generateId(),
-            title: title,
-            description: description,
-            price: price,
-            thumbnail: thumbnail,
-            code: code,
-            stock: stock
+        if (!title || !description || !price || !thumbnail || !code || !stock) {
+            console.log('All parameters are required');
+        } else{
+            const isDuplicate = this.products.find((product) => product.code === code);
+            if (isDuplicate) {
+                console.log(`Code ${code} already exists`);
+            } else{
+                const product ={
+                    id: this.generateId(),
+                    title: title,
+                    description: description,
+                    price: price,
+                    thumbnail: thumbnail,
+                    code: code,
+                    stock: stock
+                }
+                this.products.push(product)
+            }
         }
-        this.products.push(product)
     }
     generateId() {
         return ++this.newId;
@@ -40,9 +49,10 @@ getProducts.addProduct("Chomba", "Nike Golf", 7000, "https://res.cloudinary.com/
 getProducts.addProduct("Chomba", "Chaps RL", 7000, "https://res.cloudinary.com/dsdicaf5h/image/upload/v1678451430/cenicero/131_extbeh.png", "04122022CCRLBE", 6);
 getProducts.addProduct("Gorra", "Polo Rl", 5000, "https://res.cloudinary.com/dsdicaf5h/image/upload/v1678451448/cenicero/51_fmrbf9.png", "10012022GPRLBE", 3);
 getProducts.addProduct("Campera", "Chaps RL", 12000, "https://res.cloudinary.com/dsdicaf5h/image/upload/v1678451447/cenicero/86_rubhzi.png", "15052022CCRLBE", 2);
+getProducts.addProduct("Campera", "Chaps RL", 12000, "https://res.cloudinary.com/dsdicaf5h/image/upload/v1678451447/cenicero/86_rubhzi.png", "15052022CCRLBE", 2);
 
 console.log(getProducts.products); 
 
-getProducts.findProductById(2);
+getProducts.findProductById(6);
 
 
