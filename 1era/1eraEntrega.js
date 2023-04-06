@@ -8,8 +8,8 @@ class ProductManager {
         if (!title || !description || !price || !thumbnail || !code || !stock) {
             console.log('All parameters are required');
         } else{
-            const isDuplicate = this.products.find((product) => product.code === code);
-            if (isDuplicate) {
+            const duplicateCode = this.products.find((product) => product.code === code);
+            if (duplicateCode) {
                 console.log(`Code ${code} already exists`);
             } else{
                 const product ={
