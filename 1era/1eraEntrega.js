@@ -3,7 +3,6 @@ class ProductManager {
         this.products = [];
         this.newId = 0;
     }
-
     addProduct(title, description, price, thumbnail, code, stock) {
         if (!title || !description || !price || !thumbnail || !code || !stock) {
             console.log('All parameters are required');
@@ -28,13 +27,13 @@ class ProductManager {
     generateId() {
         return ++this.newId;
     }
-    arrayFind(id){
-        return this.products.find((prodIterated) => prodIterated.id === id);
+    getProducts(){
+        return this.products;
     }
     findProductById(searchedId){
-        let find = this.arrayFind(searchedId)
+        let find = this.products.find((prodIterated) => prodIterated.id === searchedId);
         if (find){
-            console.log(find.id + " exists")
+            console.log(find)
         } else{
             console.log("Not found")
         }
